@@ -1,11 +1,346 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { AlertTriangle, CheckCircle, TrendingUp } from "lucide-react";
+import DashboardCard from "../components/DashboardCard.astro";
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Importaciones y datos
+const areaData = [
+  {
+    name: "Security",
+    level: "Moderado",
+    levelClass: "bg-yellow-500",
+    fortalezas: [
+      "Reconoce la crisis de seguridad",
+      "Se enfoca en áreas clave de preocupación",
+    ],
+    debilidades: [
+      "Propuestas genéricas",
+      "Culpa poder legislativo sin autocrítica",
+    ],
+  },
+  {
+    name: "Economy",
+    level: "Moderado-Bajo",
+    levelClass: "bg-green-500",
+    fortalezas: ["Propuestas relativamente realistas", "Metas alcanzables"],
+    debilidades: ["Falta especificidad en mecanismos de financiamiento"],
+  },
+  {
+    name: "Education",
+    level: "Alto",
+    levelClass: "bg-red-500",
+    debilidades: [
+      "Promete cobertura universal sin fuentes de financiamiento",
+      "Simplifica excesivamente el problema de deserción",
+    ],
+  },
+  {
+    name: "Healthcare",
+    level: "Alto",
+    levelClass: "bg-red-500",
+    debilidades: [
+      "Promete cobertura universal sin plan financiero",
+      "No aborda realísticamente la crisis del IESS",
+    ],
+  },
+  {
+    name: "Social_development",
+    level: "Alto",
+    levelClass: "bg-red-500",
+    debilidades: [
+      "Promete reducción dramática de pobreza sin mecanismos claros",
+      "Simplifica causas estructurales",
+    ],
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Análisis de Demagogia">
+  <main class="p-6 max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Análisis de Demagogia</h1>
+
+    <!-- Tabs-->
+    <div class="mb-6">
+      <div class="inline-flex rounded-lg bg-gray-100 p-1">
+        <button
+          class="px-4 py-2 rounded-lg bg-white shadow tab-btn"
+          data-tab="general">Vista General</button
+        >
+        <button class="px-4 py-2 text-gray-600 tab-btn" data-tab="details"
+          >Detalles</button
+        >
+      </div>
+    </div>
+
+    <!--vista general -->
+    <div id="general" class="grid grid-cols-4 grid-row-2 tab-content">
+      <!-- Cards Grid -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 col-span-4"
+      >
+        <!-- Nivel Promedio Card -->
+        <DashboardCard>
+          <div>
+            <h3 class="text-sm text-gray-600 mb-2">
+              Nivel Promedio de Demagogia
+            </h3>
+            <div class="flex items-baseline">
+              <span class="text-3xl font-bold">3.4</span>
+              <span class="text-xl text-gray-600">/5.0</span>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">
+              Basado en el análisis de n áreas
+            </p>
+            <div
+              class="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden"
+            >
+              <div
+                class="h-full bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 w-[68%]"
+              >
+              </div>
+            </div>
+          </div>
+        </DashboardCard>
+
+        <!-- Áreas más Demagógicas -->
+        <DashboardCard>
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-sm text-gray-600">Áreas más Demagógicas</h3>
+              <AlertTriangle className="w-4 h-4 text-red-500" />
+            </div>
+            <div class="space-y-2">
+              <span
+                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
+                >Educación</span
+              >
+              <span
+                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
+                >Salud</span
+              >
+              <span
+                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
+                >Desarrollo Social</span
+              >
+            </div>
+          </div>
+        </DashboardCard>
+
+        <!-- Áreas más Realistas -->
+        <DashboardCard>
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-sm text-gray-600">Áreas más Realistas</h3>
+              <CheckCircle className="w-4 h-4 text-green-500" />
+            </div>
+            <div class="space-y-2">
+              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
+                Economía y Empleo
+              </div>
+              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
+                Agricultura y Desarrollo Rural
+              </div>
+              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
+                Ambiente y Energía
+              </div>
+            </div>
+          </div>
+        </DashboardCard>
+
+        <!-- Tendencia -->
+        <DashboardCard>
+          <div>
+            <div class="flex items-center gap-2 mb-3">
+              <h3 class="text-sm text-gray-600">Tendencia</h3>
+              <TrendingUp className="w-4 h-4 text-blue-500" />
+            </div>
+            <div class="text-3xl font-bold">+2.1%</div>
+            <p class="text-sm text-gray-500 mt-2">
+              Comparado con el promedio histórico
+            </p>
+          </div>
+        </DashboardCard>
+      </div>
+
+      <!-- Niveles de Demagogia por Área -->
+      <div class="grid grid-cols-1 gap-6 col-span-4 lg:col-span-2">
+        <div class="bg-white p-6 rounded-xl shadow-sm">
+          <h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
+            <span>Niveles de Demagogia por Área</span>
+          </h3>
+          <div class="space-y-4">
+            {
+              [
+                { name: "Security", level: "3/5", category: "Moderado" },
+                { name: "Economy", level: "2/5", category: "Moderado-Bajo" },
+                { name: "Education", level: "4/5", category: "Alto" },
+                { name: "Healthcare", level: "4/5", category: "Alto" },
+                { name: "Social_development", level: "4/5", category: "Alto" },
+              ].map((area) => (
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="font-medium">{area.name}</div>
+                    <div class="text-sm text-gray-500">{area.category}</div>
+                  </div>
+                  <div class="flex items-center gap-4">
+                    <div class="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        class={`h-full ${
+                          area.level === "4/5"
+                            ? "bg-red-500"
+                            : area.level === "3/5"
+                              ? "bg-orange-500"
+                              : "bg-yellow-500"
+                        }`}
+                        style={`width: ${parseInt(area.level) * 20}%`}
+                      />
+                    </div>
+                    <span class="text-sm font-medium w-8">{area.level}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+      <!-- Alertas Principales -->
+      <div class="bg-white p-6 rounded-xl shadow-sm col-span-4 lg:col-span-2">
+        <h3 class="text-lg font-semibold mb-4">Alertas Principales</h3>
+        <p class="text-sm text-gray-500 mb-6">
+          Áreas que requieren atención inmediata
+        </p>
+
+        <div class="space-y-4">
+          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
+            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
+              <AlertTriangle className="w-4 h-4" />
+              <span>Education</span>
+            </div>
+            <p class="text-sm text-red-600">
+              Promete cobertura universal sin fuentes de financiamiento
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
+            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
+              <AlertTriangle className="w-4 h-4" />
+              <span>Healthcare</span>
+            </div>
+            <p class="text-sm text-red-600">
+              Promete cobertura universal sin plan financiero
+            </p>
+          </div>
+
+          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
+            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
+              <AlertTriangle className="w-4 h-4" />
+              <span>Social_development</span>
+            </div>
+            <p class="text-sm text-red-600">
+              Promete reducción dramática de pobreza sin mecanismos claros
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="details" class="tab-content hidden">
+      <!-- Vista de Detalles -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {
+          areaData.map((area) => (
+            <div class="bg-white rounded-xl shadow-sm p-6">
+              <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold">{area.name}</h2>
+                <span
+                  class={`px-3 py-1 rounded-full text-sm ${
+                    area.level === "Alto"
+                      ? "bg-red-100 text-red-700"
+                      : area.level === "Moderado"
+                        ? "bg-yellow-100 text-yellow-700"
+                        : "bg-green-100 text-green-700"
+                  }`}
+                >
+                  {area.level}
+                </span>
+              </div>
+
+              <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-6">
+                <div
+                  class={`h-full ${area.levelClass}`}
+                  style={`width: ${
+                    area.level === "Alto"
+                      ? "80%"
+                      : area.level === "Moderado"
+                        ? "60%"
+                        : "40%"
+                  }`}
+                />
+              </div>
+
+              {area.fortalezas && area.fortalezas.length > 0 && (
+                <div class="mb-4">
+                  <h3 class="text-green-600 font-medium mb-2">Fortalezas</h3>
+                  <ul class="space-y-2">
+                    {area.fortalezas.map((fortaleza) => (
+                      <li class="text-sm text-gray-600">• {fortaleza}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div>
+                <h3 class="text-red-600 font-medium mb-2">Debilidades</h3>
+                <ul class="space-y-2">
+                  {area.debilidades.map((debilidad) => (
+                    <li class="text-sm text-gray-600">• {debilidad}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
 </Layout>
+<style>
+  .active-tab {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    // Set initial state
+    if (tabs.length > 0) {
+      tabs[0].classList.add("active-tab");
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Remove active class from all tabs
+        tabs.forEach((t) => t.classList.remove("active-tab"));
+
+        // Add active class to clicked tab
+        tab.classList.add("active-tab");
+
+        // Hide all content
+        contents.forEach((content) => content.classList.add("hidden"));
+
+        // Show selected content
+        const targetId = (tab as HTMLElement).dataset.tab;
+        if (targetId) {
+          document?.getElementById(targetId)?.classList.remove("hidden");
+        }
+      });
+    });
+  });
+</script>
