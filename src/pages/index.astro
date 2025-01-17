@@ -9,6 +9,7 @@ const areaData = [
     candidateId: "1",
     critical_issues_analysis: {
       security: {
+        display_name: "Seguridad",
         main_proposals: [
           "Fortalecimiento de fuerzas del orden",
           "Control fronterizo",
@@ -32,6 +33,7 @@ const areaData = [
         },
       },
       economy: {
+        display_name: "Economía",
         main_proposals: [
           "Diversificación productiva",
           "Atracción de inversiones",
@@ -51,6 +53,7 @@ const areaData = [
         },
       },
       education: {
+        display_name: "Educación",
         main_proposals: [
           "Acceso universal",
           "Reducción deserción",
@@ -72,6 +75,7 @@ const areaData = [
         },
       },
       healthcare: {
+        display_name: "Salud",
         main_proposals: [
           "Acceso universal",
           "Mejora infraestructura",
@@ -92,6 +96,7 @@ const areaData = [
         },
       },
       institutions: {
+        display_name: "Instituciones",
         main_proposals: [
           "Transparencia",
           "Modernización institucional",
@@ -112,6 +117,7 @@ const areaData = [
         },
       },
       environment: {
+        display_name: "Ambiente y Energía",
         main_proposals: [
           "Transición energética",
           "Conservación",
@@ -130,6 +136,7 @@ const areaData = [
         },
       },
       social_development: {
+        display_name: "Desarrollo Social",
         main_proposals: ["Reducción pobreza", "Protección social", "Vivienda"],
         demagoguery_level: {
           score: 4,
@@ -146,6 +153,7 @@ const areaData = [
         },
       },
       agriculture: {
+        display_name: "Agricultura",
         main_proposals: ["Innovación agropecuaria", "Crédito", "Riego"],
         demagoguery_level: {
           score: 2,
@@ -159,6 +167,7 @@ const areaData = [
       },
     },
     general_assessment: {
+      display_name: "General",
       main_concerns: [
         "Soluciones integrales sin detalles de implementación",
         "Subestimación de restricciones presupuestarias",
@@ -389,7 +398,7 @@ const termo = {
           result.map((area) => (
             <div class="bg-white rounded-xl shadow-sm p-6">
               <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-semibold">{area.area}</h2>
+                <h2 class="text-xl font-semibold">{area.data.display_name}</h2>
                 <span
                   class={`px-3 py-1 rounded-full text-sm ${
                     area.data.demagoguery_level.category === "Alto"
