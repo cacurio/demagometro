@@ -6,53 +6,191 @@ import Layout from "../layouts/Layout.astro";
 // Importaciones y datos
 const areaData = [
   {
-    name: "Security",
-    level: "Moderado",
-    levelClass: "bg-yellow-500",
-    fortalezas: [
-      "Reconoce la crisis de seguridad",
-      "Se enfoca en áreas clave de preocupación",
-    ],
-    debilidades: [
-      "Propuestas genéricas",
-      "Culpa poder legislativo sin autocrítica",
-    ],
-  },
-  {
-    name: "Economy",
-    level: "Moderado-Bajo",
-    levelClass: "bg-green-500",
-    fortalezas: ["Propuestas relativamente realistas", "Metas alcanzables"],
-    debilidades: ["Falta especificidad en mecanismos de financiamiento"],
-  },
-  {
-    name: "Education",
-    level: "Alto",
-    levelClass: "bg-red-500",
-    debilidades: [
-      "Promete cobertura universal sin fuentes de financiamiento",
-      "Simplifica excesivamente el problema de deserción",
-    ],
-  },
-  {
-    name: "Healthcare",
-    level: "Alto",
-    levelClass: "bg-red-500",
-    debilidades: [
-      "Promete cobertura universal sin plan financiero",
-      "No aborda realísticamente la crisis del IESS",
-    ],
-  },
-  {
-    name: "Social_development",
-    level: "Alto",
-    levelClass: "bg-red-500",
-    debilidades: [
-      "Promete reducción dramática de pobreza sin mecanismos claros",
-      "Simplifica causas estructurales",
-    ],
+    candidateId: "1",
+    critical_issues_analysis: {
+      security: {
+        main_proposals: [
+          "Fortalecimiento de fuerzas del orden",
+          "Control fronterizo",
+          "Reforma penitenciaria",
+        ],
+        demagoguery_level: {
+          score: 3,
+          scale: "0-5",
+          category: "Moderado",
+        },
+        analysis: {
+          strengths: [
+            "Reconoce la crisis de seguridad",
+            "Se enfoca en áreas clave de preocupación",
+          ],
+          weaknesses: [
+            "Propuestas genéricas",
+            "Culpa al poder legislativo sin autocrítica",
+            "Falta detalle en financiamiento de reformas",
+          ],
+        },
+      },
+      economy: {
+        main_proposals: [
+          "Diversificación productiva",
+          "Atracción de inversiones",
+          "Fomento de exportaciones",
+        ],
+        demagoguery_level: {
+          score: 2,
+          scale: "0-5",
+          category: "Moderado-Bajo",
+        },
+        analysis: {
+          strengths: [
+            "Propuestas relativamente realistas",
+            "Metas alcanzables",
+          ],
+          weaknesses: ["Falta especificidad en mecanismos de financiamiento"],
+        },
+      },
+      education: {
+        main_proposals: [
+          "Acceso universal",
+          "Reducción deserción",
+          "Becas",
+          "Educación técnica",
+        ],
+        demagoguery_level: {
+          score: 4,
+          scale: "0-5",
+          category: "Alto",
+        },
+        analysis: {
+          weaknesses: [
+            "Promete cobertura universal sin fuentes de financiamiento",
+            "Simplifica excesivamente el problema de deserción",
+            "Falta presupuesto específico para infraestructura",
+          ],
+          strengths: [],
+        },
+      },
+      healthcare: {
+        main_proposals: [
+          "Acceso universal",
+          "Mejora infraestructura",
+          "Atención primaria",
+        ],
+        demagoguery_level: {
+          score: 4,
+          scale: "0-5",
+          category: "Alto",
+        },
+        analysis: {
+          weaknesses: [
+            "Promete cobertura universal sin plan financiero",
+            "No aborda realísticamente la crisis del IESS",
+            "Simplifica problemas estructurales del sistema de salud",
+          ],
+          strengths: [],
+        },
+      },
+      institutions: {
+        main_proposals: [
+          "Transparencia",
+          "Modernización institucional",
+          "Gobierno digital",
+        ],
+        demagoguery_level: {
+          score: 3,
+          scale: "0-5",
+          category: "Moderado",
+        },
+        analysis: {
+          weaknesses: [
+            "Propuestas generalistas",
+            "Culpa a la oposición sin autocrítica",
+            "Falta detalle en implementación",
+          ],
+          strengths: [],
+        },
+      },
+      environment: {
+        main_proposals: [
+          "Transición energética",
+          "Conservación",
+          "Ciudades sostenibles",
+        ],
+        demagoguery_level: {
+          score: 2,
+          scale: "0-5",
+          category: "Moderado-Bajo",
+        },
+        analysis: {
+          strengths: ["Propuestas relativamente realistas"],
+          weaknesses: [
+            "Algunas metas ambientales carecen de financiamiento específico",
+          ],
+        },
+      },
+      social_development: {
+        main_proposals: ["Reducción pobreza", "Protección social", "Vivienda"],
+        demagoguery_level: {
+          score: 4,
+          scale: "0-5",
+          category: "Alto",
+        },
+        analysis: {
+          weaknesses: [
+            "Promete reducción dramática de pobreza sin mecanismos claros",
+            "Simplifica causas estructurales",
+            "Falta sustentabilidad financiera en programas sociales",
+          ],
+          strengths: [],
+        },
+      },
+      agriculture: {
+        main_proposals: ["Innovación agropecuaria", "Crédito", "Riego"],
+        demagoguery_level: {
+          score: 2,
+          scale: "0-5",
+          category: "Moderado-Bajo",
+        },
+        analysis: {
+          strengths: ["Propuestas más específicas y realistas"],
+          weaknesses: ["Algunos programas carecen de presupuesto detallado"],
+        },
+      },
+    },
+    general_assessment: {
+      main_concerns: [
+        "Soluciones integrales sin detalles de implementación",
+        "Subestimación de restricciones presupuestarias",
+        "Culpa a la oposición sin autocrítica",
+        "Simplificación de problemas estructurales",
+      ],
+      critical_areas: {
+        highest_demagoguery: ["Educación", "Salud", "Desarrollo Social"],
+        most_realistic: [
+          "Economía y Empleo",
+          "Agricultura y Desarrollo Rural",
+          "Ambiente y Energía",
+        ],
+      },
+    },
   },
 ];
+// const candidate = areaData
+//   .filter((area) => area.candidateId === "1")
+//   .findLast((area) => area.critical_issues_analysis);
+const result = Object.entries(areaData[0].critical_issues_analysis).map(
+  ([area, data]) => ({
+    area,
+    data,
+  })
+);
+const termo = {
+  Alto: "bg-red-500",
+  Moderado: "bg-yellow-500",
+  "Moderado-Bajo": "bg-green-500",
+  "Alto-Bajo": "bg-gray-500",
+};
 ---
 
 <Layout title="Análisis de Demagogia">
@@ -248,51 +386,58 @@ const areaData = [
       <!-- Vista de Detalles -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {
-          areaData.map((area) => (
+          result.map((area) => (
             <div class="bg-white rounded-xl shadow-sm p-6">
               <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-semibold">{area.name}</h2>
+                <h2 class="text-xl font-semibold">{area.area}</h2>
                 <span
                   class={`px-3 py-1 rounded-full text-sm ${
-                    area.level === "Alto"
+                    area.data.demagoguery_level.category === "Alto"
                       ? "bg-red-100 text-red-700"
-                      : area.level === "Moderado"
+                      : area.data.demagoguery_level.category === "Moderado"
                         ? "bg-yellow-100 text-yellow-700"
                         : "bg-green-100 text-green-700"
                   }`}
                 >
-                  {area.level}
+                  {area.data.demagoguery_level.category}
                 </span>
               </div>
 
               <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-6">
                 <div
-                  class={`h-full ${area.levelClass}`}
+                  class={`h-full ${
+                    area.data.demagoguery_level.category === "Alto"
+                      ? termo.Alto
+                      : area.data.demagoguery_level.category === "Moderado"
+                        ? termo.Moderado
+                        : termo["Moderado-Bajo"]
+                  }`}
                   style={`width: ${
-                    area.level === "Alto"
+                    area.data.demagoguery_level.category === "Alto"
                       ? "80%"
-                      : area.level === "Moderado"
+                      : area.data.demagoguery_level.category === "Moderado"
                         ? "60%"
                         : "40%"
                   }`}
                 />
               </div>
 
-              {area.fortalezas && area.fortalezas.length > 0 && (
-                <div class="mb-4">
-                  <h3 class="text-green-600 font-medium mb-2">Fortalezas</h3>
-                  <ul class="space-y-2">
-                    {area.fortalezas.map((fortaleza) => (
-                      <li class="text-sm text-gray-600">• {fortaleza}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {area.data.analysis?.strengths &&
+                area.data.analysis.strengths.length > 0 && (
+                  <div class="mb-4">
+                    <h3 class="text-green-600 font-medium mb-2">Fortalezas</h3>
+                    <ul class="space-y-2">
+                      {area.data.analysis.strengths.map((strength) => (
+                        <li class="text-sm text-gray-600">• {strength}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
               <div>
                 <h3 class="text-red-600 font-medium mb-2">Debilidades</h3>
                 <ul class="space-y-2">
-                  {area.debilidades.map((debilidad) => (
+                  {area.data.analysis.weaknesses.map((debilidad) => (
                     <li class="text-sm text-gray-600">• {debilidad}</li>
                   ))}
                 </ul>
