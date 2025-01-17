@@ -200,11 +200,14 @@ const termo = {
   "Moderado-Bajo": "bg-green-500",
   "Alto-Bajo": "bg-gray-500",
 };
+const maxDemagoguery = 4;
 ---
 
 <Layout title="Análisis de Demagogia">
   <main class="p-6 max-w-7xl mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Análisis de Demagogia</h1>
+    <h1 class="text-3xl font-bold mb-6">
+      Análisis de Demagógia en las propuesta presidenciales
+    </h1>
 
     <!-- Tabs-->
     <div class="mb-6">
@@ -257,18 +260,15 @@ const termo = {
               <AlertTriangle className="w-4 h-4 text-red-500" />
             </div>
             <div class="space-y-2">
-              <span
-                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
-                >Educación</span
-              >
-              <span
-                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
-                >Salud</span
-              >
-              <span
-                class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm"
-                >Desarrollo Social</span
-              >
+              {
+                result.map((area) =>
+                  area.data.demagoguery_level.score === maxDemagoguery ? (
+                    <span class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm">
+                      {area.data.display_name}
+                    </span>
+                  ) : null
+                )
+              }
             </div>
           </div>
         </DashboardCard>
@@ -281,15 +281,15 @@ const termo = {
               <CheckCircle className="w-4 h-4 text-green-500" />
             </div>
             <div class="space-y-2">
-              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
-                Economía y Empleo
-              </div>
-              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
-                Agricultura y Desarrollo Rural
-              </div>
-              <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
-                Ambiente y Energía
-              </div>
+              {
+                result.map((area) =>
+                  area.data.demagoguery_level.score < maxDemagoguery ? (
+                    <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
+                      {area.data.display_name}
+                    </div>
+                  ) : null
+                )
+              }
             </div>
           </div>
         </DashboardCard>
@@ -317,32 +317,31 @@ const termo = {
           </h3>
           <div class="space-y-4">
             {
-              [
-                { name: "Security", level: "3/5", category: "Moderado" },
-                { name: "Economy", level: "2/5", category: "Moderado-Bajo" },
-                { name: "Education", level: "4/5", category: "Alto" },
-                { name: "Healthcare", level: "4/5", category: "Alto" },
-                { name: "Social_development", level: "4/5", category: "Alto" },
-              ].map((area) => (
+              result.map((area) => (
                 <div class="flex items-center justify-between">
                   <div>
-                    <div class="font-medium">{area.name}</div>
-                    <div class="text-sm text-gray-500">{area.category}</div>
+                    <div class="font-medium">{area.data.display_name}</div>
+                    <div class="text-sm text-gray-500">
+                      {area.data.demagoguery_level.category}
+                    </div>
                   </div>
                   <div class="flex items-center gap-4">
                     <div class="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
                       <div
                         class={`h-full ${
-                          area.level === "4/5"
+                          area.data.demagoguery_level.category === "Alto"
                             ? "bg-red-500"
-                            : area.level === "3/5"
+                            : area.data.demagoguery_level.category ===
+                                "Moderado"
                               ? "bg-orange-500"
                               : "bg-yellow-500"
                         }`}
-                        style={`width: ${parseInt(area.level) * 20}%`}
+                        style={`width: ${area.data.demagoguery_level.score * 20}%`}
                       />
                     </div>
-                    <span class="text-sm font-medium w-8">{area.level}</span>
+                    <span class="text-sm font-medium w-8">
+                      {area.data.demagoguery_level.score}
+                    </span>
                   </div>
                 </div>
               ))
@@ -356,37 +355,24 @@ const termo = {
         <p class="text-sm text-gray-500 mb-6">
           Áreas que requieren atención inmediata
         </p>
-
         <div class="space-y-4">
-          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
-            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Education</span>
-            </div>
-            <p class="text-sm text-red-600">
-              Promete cobertura universal sin fuentes de financiamiento
-            </p>
-          </div>
-
-          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
-            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Healthcare</span>
-            </div>
-            <p class="text-sm text-red-600">
-              Promete cobertura universal sin plan financiero
-            </p>
-          </div>
-
-          <div class="p-4 rounded-lg border border-red-200 bg-red-50">
-            <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
-              <AlertTriangle className="w-4 h-4" />
-              <span>Social_development</span>
-            </div>
-            <p class="text-sm text-red-600">
-              Promete reducción dramática de pobreza sin mecanismos claros
-            </p>
-          </div>
+          {
+            result.map((area) =>
+              area.data.demagoguery_level.score === maxDemagoguery ? (
+                <div class="space-y-4">
+                  <div class="p-4 rounded-lg border border-red-200 bg-red-50">
+                    <div class="flex items-center gap-2 text-red-600 font-medium mb-2">
+                      <AlertTriangle className="w-4 h-4" />
+                      <span>{area.data.display_name}</span>
+                    </div>
+                    <p class="text-sm text-red-600">
+                      {area.data.analysis.weaknesses[0]}
+                    </p>
+                  </div>
+                </div>
+              ) : null
+            )
+          }
         </div>
       </div>
     </div>
