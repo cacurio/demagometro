@@ -227,12 +227,11 @@ const maxDemagoguery = 4;
       </div>
     </div>
 
-    <!--vista general -->
-    <div id="general" class="grid grid-cols-4 grid-row-2 tab-content">
+    <!--Tab vista general -->
+    <div id="general" class="grid grid-cols-4 grid-row-2 gap-4 tab-content ">
+
       <!-- Cards Grid -->
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 col-span-4"
-      >
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 col-span-4">
         <!-- Nivel Promedio Card -->
         <DashboardCard>
           <div>
@@ -264,14 +263,14 @@ const maxDemagoguery = 4;
               <h3 class="text-sm text-gray-600">Áreas más Demagógicas</h3>
               <AlertTriangle className="w-4 h-4 text-red-500" />
             </div>
-            <div class="space-y-2">
+            <div class="flex flex-wrap gap-2">
               {
                 result.map((area) =>
-                  area.data.demagoguery_level.score === maxDemagoguery ? (
-                    <span class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-700 text-sm">
+                  area.data.demagoguery_level.score === maxDemagoguery && (
+                    <span class="inline-block px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs">
                       {area.data.display_name}
                     </span>
-                  ) : null
+                  )
                 )
               }
             </div>
@@ -285,14 +284,14 @@ const maxDemagoguery = 4;
               <h3 class="text-sm text-gray-600">Áreas más Realistas</h3>
               <CheckCircle className="w-4 h-4 text-green-500" />
             </div>
-            <div class="space-y-2">
+            <div class="flex flex-wrap gap-2">
               {
                 result.map((area) =>
-                  area.data.demagoguery_level.score < maxDemagoguery ? (
-                    <div class="px-3 py-1 rounded-lg bg-gray-100 text-sm">
+                  area.data.demagoguery_level.score < maxDemagoguery && (
+                    <div class="inline-block px-3 py-1 rounded-full bg-gray-100 text-xs">
                       {area.data.display_name}
                     </div>
-                  ) : null
+                  ) 
                 )
               }
             </div>
